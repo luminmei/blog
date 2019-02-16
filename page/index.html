@@ -8,6 +8,7 @@
     <title>个人博客</title>
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/index.css">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 <body>
     <header class="header">
@@ -26,79 +27,41 @@
         </div>
     </header>
     <div class="content">
-        <div class="content_left">
-            <div class="every_day">
+        <div class="content_left" >
+            <div class="every_day" id="every_day">
                 <span>每日一句</span>
-                <p>一堆东西</p>
-                <p>一堆东西</p>
+                <p v-html="getContent"></p>
             </div>
-            <div class="article_list">
-                <div class="article">
-                    <a class="article_title" href="/">
-                        PC端微信(2.6.6.28)防撤回
-                    </a>
-                    <p class="article_content">
-                        此方法仅限于官网下载的PC版微信2.6.6.28版本。工具：winhex19、pc版微信打开winhex19， 文件->打开，定位并找到微信安装目录中的WeChatWin.dll，打开。点击左侧offset列，使偏移量转为16进制格式显示。点击工具栏中的“转到偏移量”。输入 0024A58E ，确定。自动定位到一个数值：75，其中5以反色（蓝色）光标显示，输入4，使其变为74。保存文件...
-                    </p>
-                    <div class="article_foot">发布于2019-02-14 |  浏览(95) | Tags：微信</div>
-                </div>
-                <div class="article">
-                    <a class="article_title" href="/">
-                        PC端微信(2.6.6.28)防撤回
-                    </a>
-                    <p class="article_content">
-                        此方法仅限于官网下载的PC版微信2.6.6.28版本。工具：winhex19、pc版微信打开winhex19， 文件->打开，定位并找到微信安装目录中的WeChatWin.dll，打开。点击左侧offset列，使偏移量转为16进制格式显示。点击工具栏中的“转到偏移量”。输入 0024A58E ，确定。自动定位到一个数值：75，其中5以反色（蓝色）光标显示，输入4，使其变为74。保存文件...
-                    </p>
-                    <div class="article_foot">发布于2019-02-14 |  浏览(95) | Tags：微信</div>
+            <div class="article_list" id="article_list">
+                <div class="article" v-for="(article,index) in articleList">
+                    <a :href="article.link" class="article_title" href="/">{{article.title}}</a>
+                    <p class="article_content">{{article.content}}</p>
+                    <div class="article_foot">发布于{{article.date}} |  浏览({{article.views}}) | Tags：{{article.tags}}</div>
                 </div>
             </div>
         </div>
         <div class="content_right">
-            <div class="right_module">
+            <div class="right_module" id="random_tags">
                 <div>随机标签云</div>
-                <a href="">abs</a>
-                <a href="">abs</a>
-                <a href="">abs</a>
-                <a href="">abs</a>
-                <a href="">abs</a>
-                <a href="">abs</a>
-                <a href="">abs</a>
-                <a href="">abs</a>
-                <a href="">abs</a>
+                <a href="" v-for="tag in tags" :style="{'color': randomColor(),'font-Size': randomSize()}">{{tag}}</a>
             </div>
-            <div class="right_module">
+            <div class="right_module" id="new_hot">
                 <div>最近热门</div>
                 <ul>
-                    <li><a href="">查看你的AWS服务器已使用流量</a></li>
-                    <li><a href="">查看你的AWS服务器已使用流量</a></li>
-                    <li><a href="">查看你的AWS服务器已使用流量</a></li>
-                    <li><a href="">查看你的AWS服务器已使用流量</a></li>
-                    <li><a href="">查看你的AWS服务器已使用流量</a></li>
+                    <li v-for="temp in titleList">
+                        <a :href="temp.link">{{temp.title}}</a>
+                    </li>
                 </ul>
             </div>
-            <div class="right_module">
+            <div class="right_module" id="new_comment">
                 <div>最近评论</div>
                 <ul>
-                    <li>
+                    <li v-for="comment in commentList">
                         <div>
-                            <span>许寒</span>
-                            <span class="pull_right">[2天前]</span>
+                            <span>{{comment.name}}</span>
+                            <span class="pull_right">{{comment.date}}</span>
                         </div>
-                        <p>谢谢晓哥，我已经搞定了</p>
-                    </li>
-                    <li>
-                        <div>
-                            <span>许寒</span>
-                            <span class="pull_right">[2天前]</span>
-                        </div>
-                        <p>谢谢晓哥，我已经搞定了</p>
-                    </li>
-                    <li>
-                        <div>
-                            <span>许寒</span>
-                            <span class="pull_right">[2天前]</span>
-                        </div>
-                        <p>谢谢晓哥，我已经搞定了</p>
+                        <p>{{comment.comment}}</p>
                     </li>
                 </ul>
             </div>
@@ -127,5 +90,7 @@
         </ul>
         <p>Copyright © 2010-2017 fghadhdsf </p>
     </footer>
+    <script src="./js/index.js"></script>
+    <script src="./js/base.js"></script>
 </body>
 </html>
