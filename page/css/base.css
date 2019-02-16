@@ -3,6 +3,10 @@
     padding:0;
     list-style: none;
 }
+@font-face {
+    font-family:"MyIcon";
+    src:url("../font/glyphicons-halflings-regular.woff2");
+}
 body {
     background-image: url(../img/bg.jpg);
     position:relative;
@@ -69,4 +73,22 @@ body {
     color:#555;
     right:0;
     background:#fff;
+}
+.content {
+    display: inline-block;
+    position: relative;
+    width: 1170px;
+    margin: 30px auto 0px auto;
+}
+.content_left {
+    float:left;
+    width:66%;
+    padding:0px 20px 0px 0px;
+    box-sizing: border-box;
+}
+.content_right {
+    float:right;
+    width:34%;
+    padding:0px 0px 0px 0px;
+    box-sizing: border-box;
 }
