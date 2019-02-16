@@ -92,3 +92,66 @@ body {
     padding:0px 0px 0px 0px;
     box-sizing: border-box;
 }
+
+.right_module {
+    display: inline-block;
+    width:100%;
+    background:#1f1f1f;
+    color:#fff;
+    border-radius: 10px;
+    text-align: left;
+    padding:0px 12px 20px 15px;
+    margin-bottom:20px;
+}
+.right_module div {
+    display: block;
+    text-align: left;
+    font-size:14px;
+    padding:15px 5px 15px 0px ;
+    color:dodgerblue;
+}
+.right_module > a {
+    display: inline-block;
+    font-size:14px;
+    color:dodgerblue;
+   margin-right:5px;
+    text-decoration: none;
+}
+.right_module > ul > li{
+    list-style: none;
+    color:#fff;
+    padding:8px;
+    border:1px solid #292929;
+}
+.right_module > ul > li > a {
+    text-decoration: none;
+    color:#fff;
+}
+.right_module > ul > li > div {
+    padding:5px  0px;
+}
+.right_module > ul > li > div  > span {
+    font-size:14px;
+    color:#fff;
+}
+.right_module > ul > li > p {
+     font-size:14px;
+     color:#777;
+ }
+ .pull_right{
+     position:absolute;
+     right: 15px;
+ }
+
+.right_module > span {
+    display: inline-block;
+    width:48%;
+    height:30px;
+    margin-top:10px;
+}
+.right_module > span > a {
+    text-decoration: none;
+    color:#fff;
+    line-height:30px;
+}
+
