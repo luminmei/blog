@@ -39,6 +39,11 @@
                     <p class="article_content">{{article.content}}</p>
                     <div class="article_foot">发布于{{article.date}} |  浏览({{article.views}}) | Tags：{{article.tags}}</div>
                 </div>
+                <div class="page_tool">
+                    <ul>
+                        <li v-for="item in pageList" @click="jumpTo(item.page)" :class="{now_page: (item.text == page)}">{{item.text}}</li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="content_right">

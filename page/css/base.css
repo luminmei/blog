@@ -176,3 +176,26 @@ body {
 .footer > p {
     margin-top:10px;
 }
+
+.page_tool {
+    margin-top:20px;
+    display: inline-block;
+}
+.page_tool > ul > li{
+    display: inline-block;
+    list-style:none;
+    width:40px;
+    height:30px;
+    background:#fff;
+    line-height: 30px;
+    border: 1px solid #000;
+    float: left;
+    cursor: pointer;
+}
+.page_tool > ul > li:hover {
+    background:#aaa;
+}
+.now_page {
+    background:#333!important;
+    color:#fff!important;
+}

@@ -6,11 +6,37 @@ var timeUtil = require("../util/TimeUtil");
 var respUtil = require("../util/RespUtil");
 var url = require("url");
 
+function queryBlogCount (request, response) {
+    blogDao.queryBlogCount(function (result) {
+        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", result))
+        response.end()
+    })
+}
+path.set("/queryBlogCount", queryBlogCount);
+
+function queryBlogByPage (request, response) {
+    var params = url.parse(request.url, true).query;
+    blogDao.queryBlogByPage(parseInt(params.page), parseInt(params.pageSize), function (result) {
+        for (var i = 0;i < result.length; i++) {
+            // 去掉img标签
+            result[i].content = result[i].content.replace(/<img[\w\W]*">/,"");
+            // 去掉标签
+            result[i].content = result[i].content.replace(/<[\w\W]{1,5}>/g,"");
+            // 截断字符
+            result[i].content = result[i].content.substring(0,300)
+        }
+        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", result));
+        response.end()
+    })
+}
+path.set("/queryBlogByPage", queryBlogByPage);
+
 function editBlog (request, response) {
     var params = url.parse(request.url, true).query;
     // 防止提交标签的时候，有些人用中文逗号分隔
-    var tags = params.tags.replace(/ /g, "");
-    tags = tags.replace("，", ",");
+    var tags = params.tags.replace(/ /g, "").replace("，", ",");
     request.on("data", function (data) {
         blogDao.insertBlog(params.title, data, params.tags, 0, timeUtil.getNow(), timeUtil.getNow(), function (result) {
             response.writeHead(200);
