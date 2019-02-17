@@ -1,8 +1,8 @@
-var erverDay = new Vue({
+var everyDay = new Vue({
     el: "#every_day",
     data (){
         return {
-            content: "aaaa"
+            content: ""
         }
     },
     computed: {
@@ -12,6 +12,14 @@ var erverDay = new Vue({
     },
     created: function () {
         // 请求数据，给content初始
+        axios({
+            method: "get",
+            url: "/queryEveryDay"
+        }).then(function (res) {
+            everyDay.content = res.data.data[0].content;
+        }).catch(function (res) {
+            console.log("请求失败")
+        })
     }
 });
 

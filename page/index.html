@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/index.css">
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="./js/axios.js"></script>
 </head>
 <body>
     <header class="header">
@@ -30,7 +31,7 @@
         <div class="content_left" >
             <div class="every_day" id="every_day">
                 <span>每日一句</span>
-                <p v-html="getContent"></p>
+                <p v-html="getContent" style="margin-left:20px"></p>
             </div>
             <div class="article_list" id="article_list">
                 <div class="article" v-for="(article,index) in articleList">
