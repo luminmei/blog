@@ -40,11 +40,28 @@ function queryBlogCount (success) {
         } else {
             console.log(error)
         }
-    })
+    });
     connection.end()
 }
+
+function queryBlogById (id, success) {
+    var querySql = "select * from blog where id = ?";
+    var params = [id]
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql, params, function (error, result) {
+        if (error == null) {
+            success(result)
+        } else {
+            console.log(error)
+        }
+    });
+    connection.end()
+}
+
 module.exports = {
     "insertBlog": insertBlog,
     "queryBlogByPage": queryBlogByPage,
-    "queryBlogCount": queryBlogCount
+    "queryBlogCount": queryBlogCount,
+    "queryBlogById": queryBlogById
 };

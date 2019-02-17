@@ -19,7 +19,7 @@ var randomTags = new Vue({
             }
         }
     },
-    create: {
+    created () {
 
     }
 });

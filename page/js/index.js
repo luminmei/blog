@@ -47,7 +47,8 @@ var articleListList = new Vue({
                     temp.content = res[i].content;
                     temp.views = res[i].views;
                     temp.tags = res[i].tags;
-                    temp.link = res[i].link;
+                    temp.link = "/blog_detail.html?bid=" + res[i].id;
+                    temp.date = new Date(res[i].ctime).getFullYear() + "-" +(new Date(res[i].ctime).getMonth()+1)  + "-" + new Date(res[i].ctime).getDay();
                     temp.id = res[i].id;
                     list.push(temp)
                 }

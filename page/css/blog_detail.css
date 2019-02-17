@@ -1,0 +1,23 @@
+.blog {
+    background:#fff;
+    width:96%;
+    border-radius: 5px;
+    padding:10px 15px;
+    box-shadow: 3px 4px 3px #888;
+    text-align: left;
+    word-break: break-all;
+    overflow: hidden;
+}
+.blog_title {
+    font-size:24px;
+    font-weight:600;
+}
+.blog_msg {
+    padding-top: 10px;
+    padding-bottom:20px;
+    border-bottom:1px solid #000;
+    margin-bottom:20px;
+}
+.blog_content {
+    padding:0px 10px 20px 10px;
+}

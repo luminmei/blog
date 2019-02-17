@@ -35,7 +35,7 @@
             </div>
             <div class="article_list" id="article_list">
                 <div class="article" v-for="(article,index) in articleList">
-                    <a :href="article.link" class="article_title" href="/">{{article.title}}</a>
+                    <a :href="article.link" class="article_title">{{article.title}}</a>
                     <p class="article_content">{{article.content}}</p>
                     <div class="article_foot">发布于{{article.date}} |  浏览({{article.views}}) | Tags：{{article.tags}}</div>
                 </div>
