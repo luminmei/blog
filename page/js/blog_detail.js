@@ -47,10 +47,16 @@ var blogDetail = new Vue({
 var sendComment = new Vue({
     el: "#sendComment",
     data: {
-
+        vcode: null,
+        rightCode: null
     },
     methods: {
         sendComment () {
+            var code = document.getElementById("comment_code").value;
+            if (this.rightCode != code) {
+                alert("验证码有误");
+                return
+            }
             var bid = findId();
             var replay = document.getElementById("comment_reply").value;
             var name = document.getElementById("comment_name").value;
@@ -61,10 +67,25 @@ var sendComment = new Vue({
                 method: "get",
                 url: "/addComment?bid=" + bid + "&parent=" + replay + "&name=" + name + "&email=" + email + "&comment=" + comment
             }).then((res) => {
-                console.log(res)
-            }).catch((res) => {
-
+                alert(res.data.msg)
             })
+        },
+        queryCode () {
+            axios({
+                url: "/queryRandomCode",
+                method: "get"
+            }).then((res) => {
+                sendComment.vcode = res.data.data.data;
+                sendComment.rightCode = res.data.data.text;
+            }).catch(() => {
+                console.log("请求失败")
+            })
+        },
+        changeCode () {
+            this.queryCode()
         }
+    },
+    created () {
+        this.queryCode()
     }
 });
