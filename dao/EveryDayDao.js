@@ -11,7 +11,7 @@ function insertEveryDay (content, ctime, success) {
         } else {
             console.log(error);
         }
-    })
+    });
     connection.end();
 }
 function queryEveryDay (success) {

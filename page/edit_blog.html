@@ -19,11 +19,23 @@
     <script src="./js/bootstrap-wysiwyg.js"></script>
     <script>
       function submit () {
-        alert("提交")
         var content = $("#editor").html();
-        var title = $("#title").html();
-        var tags = $("#tags").html();
-        var tags = $("#tags").html();
+        var title = $("#title").val();
+        var tags = $("#tags").val();
+
+        $.ajax({
+          url: "/editBlog?title=" + title + "&tags=" + tags,
+          method: "post",
+          data: content,
+          success: function (res) {
+            var result = JSON.parse(res);
+            alert(result.msg);
+            $("#editor").html("");
+          },
+          error: function (res) {
+            console.log(res)
+          }
+        })
       }
     </script>
     <style>
