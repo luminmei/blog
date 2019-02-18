@@ -6,6 +6,15 @@ var timeUtil = require("../util/TimeUtil");
 var respUtil = require("../util/RespUtil");
 var url = require("url");
 
+function queryAllBlog(request, response) {
+    blogDao.queryAllBlog(function (result) {
+        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", result));
+        response.end()
+    })
+}
+path.set("/queryAllBlog", queryAllBlog);
+
 function queryBlogById (request, response) {
     var params = url.parse(request.url, true).query;
     blogDao.queryBlogById(parseInt(params.bid), function (result) {

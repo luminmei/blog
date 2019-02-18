@@ -16,6 +16,7 @@ app.get("/addComment", loader.get("/addComment"));
 app.get("/queryRandomCode", loader.get("/queryRandomCode"));
 app.get("/queryCommentByBlogId", loader.get("/queryCommentByBlogId"));
 app.get("/queryCommentsCountByBlogId", loader.get("/queryCommentsCountByBlogId"));
+app.get("/queryAllBlog", loader.get("/queryAllBlog"));
 
 app.listen(globalConfig.port, function () {
     console.log("服务已启动");
