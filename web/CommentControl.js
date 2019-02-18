@@ -31,7 +31,6 @@ path.set("/queryRandomCode", queryRandomCode);
 function queryCommentByBlogId (request, response) {
     var params = url.parse(request.url, true).query;
     commentDao.queryCommentsByBlogId(parseInt(params.bid), function (result) {
-        console.log(result)
         response.writeHead(200, {"Content-Type": "application/json;charset:UTF-8"});
         response.write(respUtil.writeResult("success", "查询成功", result));
         response.end()
