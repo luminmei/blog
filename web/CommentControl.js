@@ -49,4 +49,15 @@ function queryCommentsCountByBlogId (request, response) {
 }
 
 path.set("/queryCommentsCountByBlogId", queryCommentsCountByBlogId);
+
+function queryNewComments (request, response) {
+    commentDao.queryNewComments(5, function (result) {
+        response.writeHead(200, {"Content-Type": "application/json;charset:UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", result));
+        response.end()
+    })
+}
+
+path.set("/queryNewComments", queryNewComments);
+
 module.exports.path = path;

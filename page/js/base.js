@@ -69,16 +69,14 @@ var newHot = new Vue({
 var newComment = new Vue({
     el: "#new_comment",
     data: {
-        commentList: [
-            {name:"这里是用户名", date: "2018-10-10", comment:"这里是一大串评论，巴拉巴拉"},
-            {name:"这里是用户名", date: "2018-10-10", comment:"这里是一大串评论，巴拉巴拉"},
-            {name:"这里是用户名", date: "2018-10-10", comment:"这里是一大串评论，巴拉巴拉"},
-            {name:"这里是用户名", date: "2018-10-10", comment:"这里是一大串评论，巴拉巴拉"},
-            {name:"这里是用户名", date: "2018-10-10", comment:"这里是一大串评论，巴拉巴拉"},
-            {name:"这里是用户名", date: "2018-10-10", comment:"这里是一大串评论，巴拉巴拉"}
-        ]
+        commentList: []
     },
-    computed: {
-
+    created () {
+        axios({
+          method: "get",
+          url: "/queryNewComments"
+        }).then((res) => {
+            newComment.commentList = res.data.data;
+        })
     }
-})
+});
