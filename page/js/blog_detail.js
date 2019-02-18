@@ -3,7 +3,7 @@ function findId () {
     if (!searchUrlParams) {
         return
     }
-    var bid = -1
+    var bid = -10;
     if (searchUrlParams.split("=")[0] == "bid") {
         try {
             bid = parseInt(searchUrlParams.split("=")[1])
