@@ -1,7 +1,7 @@
 var randomTags = new Vue({
     el: "#random_tags",
     data: {
-        tags: ["asd", "fgsdg", "aasgh","uhf", "ohdh","asd", "fgsdg", "aasgh","uhf", "ohdh","asd", "fgsdg", "aasgh","uhf", "ohdh"]
+        tags: []
     },
     computed: {
         randomColor: function () {
@@ -14,13 +14,18 @@ var randomTags = new Vue({
         },
         randomSize: function () {
             return function () {
-                var size = (Math.random() * 20 + 12) + "px"
+                var size = (Math.random() * 20 + 12) + "px";
                 return size
             }
         }
     },
     created () {
-
+        axios({
+            method:"get",
+            url: "/queryRandomTags"
+        }).then((res) => {
+            randomTags.tags = res.data.data
+        })
     }
 });
 var newHot = new Vue({
@@ -44,6 +49,21 @@ var newHot = new Vue({
                 link: "http://www.baidu.com"
             }
         ]
+    },
+    created () {
+        axios({
+            method: "get",
+            url: "/queryHotBlog"
+        }).then((res) => {
+            var result = [];
+            for (var i = 0; i < res.data.data.length;i++) {
+                var temp = {}
+                temp.title = res.data.data[i].title;
+                temp.link = "/blog_detail.html?bid=" + res.data.data[i].id;
+                result.push(temp)
+            }
+            newHot.titleList = result
+        })
     }
 });
 var newComment = new Vue({

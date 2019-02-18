@@ -6,6 +6,17 @@ var timeUtil = require("../util/TimeUtil");
 var respUtil = require("../util/RespUtil");
 var url = require("url");
 
+
+function queryHotBlog(request, response) {
+
+    blogDao.queryHotBlog(5, function (result) {
+        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", result));
+        response.end()
+    })
+}
+path.set("/queryHotBlog", queryHotBlog);
+
 function queryAllBlog(request, response) {
     blogDao.queryAllBlog(function (result) {
         response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
@@ -21,6 +32,8 @@ function queryBlogById (request, response) {
         response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
         response.write(respUtil.writeResult("success", "查询成功", result));
         response.end()
+        // 查看博客就views加1
+        blogDao.addViews(parseInt(params.bid), function (result) {})
     })
 }
 path.set("/queryBlogById", queryBlogById);

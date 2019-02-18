@@ -74,10 +74,42 @@ function queryAllBlog (success) {
     connection.end()
 }
 
+function addViews (id, success) {
+    var modSql = "update blog set views = views + 1 where id = ?";
+    var params = [id];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(modSql, params, function (error, result) {
+        if (error == null) {
+            success(result)
+        } else {
+            console.log(error)
+        }
+    });
+    connection.end()
+}
+// 倒叙查找热门博客
+function queryHotBlog (size, success) {
+    var modSql = "select * from blog order by views desc limit ?";
+    var params = [size];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(modSql, params, function (error, result) {
+        if (error == null) {
+            success(result)
+        } else {
+            console.log(error)
+        }
+    });
+    connection.end()
+}
+
 module.exports = {
     "insertBlog": insertBlog,
     "queryBlogByPage": queryBlogByPage,
     "queryBlogCount": queryBlogCount,
     "queryBlogById": queryBlogById,
-    "queryAllBlog": queryAllBlog
+    "queryAllBlog": queryAllBlog,
+    "addViews": addViews,
+    "queryHotBlog": queryHotBlog
 };
